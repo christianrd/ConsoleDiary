@@ -1,0 +1,3 @@
+require "./Diary"
+
+Diary.new

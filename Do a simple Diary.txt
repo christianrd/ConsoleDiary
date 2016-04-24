@@ -1,0 +1,14 @@
+﻿
+-- Agenda Ruby --
+
+* Hacer una agenda haciendo uso de la POO en Ruby. El programa debe ser capaz de almacenar el nombre, apellido, dirección y teléfono de los contactos.
+
+* Su programa debe de contar con una clase Persona la cual tendrá como atributos nombre y apellido. También debe tener una clase Contacto la cual debe de heredar de la clase Persona y tener como atributos dirección y teléfono. Por otro lado su programa debe tener una clase Agenda en donde se almacenarán los contactos en un array. Su programa debe tener una clase Sistema en la cual se va a instanciar la clase Agenda.
+
+* La clase Agenda debe tener los siguientes métodos: agregarContacto, eliminarContacto y listarContactos.
+
+* Hacer un menú adecuado para el programa, los datos deben ser ingresados por consola.
+
+* Su programa debe cumplir con estos requerimientos básicos, esta en la libertad de agregar más características.
+
+¡Vamos que está fácil!
