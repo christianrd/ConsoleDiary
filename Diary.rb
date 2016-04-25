@@ -5,18 +5,19 @@ class Diary
 	def initialize()
 		@contacts = []
 		system('cls')
-		mainmenu()
+		mainMenu()
 	end
 
-	def mainmenu
+	#print de Main Menu
+	def mainMenu
 		system('clear')
 		puts "\n\t*********    WELCOME TO THE DIARY    ********"
 		puts "\t********    ======================    *******\n"
 		puts "\n\t*******	   	    MENU        	*****"
 		puts "\t*-------------------------------------------*"
-		puts "\t*******	 	[1] View contacts 	*****"
+		puts "\t*******		[1] Add new contact 	*****"
 		puts "\t*-------------------------------------------*"
-		puts "\t*******		[2] Add new contact 	*****"
+		puts "\t*******	 	[2] View contacts 	*****"
 		puts "\t*-------------------------------------------*"
 		puts "\t*******	 	[3] Delete contact 	*****"
 		puts "\t*-------------------------------------------*"
@@ -24,15 +25,15 @@ class Diary
 		puts "\t*-------------------------------------------*"
 		print "\n select a option from main menu => "
 		STDOUT.flush
-		option = gets.chomp
+		_option = gets.chomp
 
-		case option
+		case _option
 		when "1"
 			system('cls')
-			viewContacts()
+			addContact()
 		when "2"
 			system('cls')
-			addContact()
+			viewContacts()
 		when "3"
 			system('cls')
 			deleteContact()
@@ -44,9 +45,9 @@ class Diary
 			system('cls')
 			mainmenu()
 		end
-
 	end
 
+	#print each contacts registered
 	def viewContacts
 		puts "\n\t#\t Name \t\t#\t Lastname \t#\t Address \t#\t Telephone \t# "
 		puts "\t*=======================*=======================*=======================*=======================*"
@@ -57,54 +58,83 @@ class Diary
 
 		print "\nDo you want return to main menu? y/n => "
 		STDOUT.flush
-		option = gets.chomp
+		_option = gets.chomp
 
-		if option == "n"
+		if _option == "n"
 			system('cls')
 			viewContacts()
 		else
 			system('cls')
-			mainmenu()
+			mainMenu()
 		end
 	end	
 
 	def addContact()
 		print "Please insert a name: " 
-		name = gets.chomp
+		_name = gets.chomp
 
 		print "Please insert a lastname: "
-		lastname = gets.chomp
+		_lastname = gets.chomp
 
 		print "Please insert a address: "
-		address = gets.chomp
+		_address = gets.chomp
 
 		print "Please insert a telephone: "
-		telephone = gets.chomp
+		_telephone = gets.chomp
 
-		contact = Contact.new(name, lastname, address, telephone)
+		_contact = Contact.new(_name, _lastname, _address, _telephone)
 
-		@contacts.push(contact)
+		@contacts.push(_contact)
 
 		system('cls')
-		print "Do you want return to main menu? y/n => "
+		print "Do you want try again? y/n => "
 		STDOUT.flush
-		option2 = gets.chomp
+		_option = gets.chomp
 
-		if option2 == "n"
+		if _option == "y"
 			system('cls')
 			addContact()
 		else
 			system('cls')
-			mainmenu()
+			mainMenu()
 		end
 	end
 
 	def deleteContact()
-			print "\n\t Select a ID for delet contact =>"
-			STDOUT.flush
-			id = gets.chomp
+		puts "\n\t#\t ID \t\t#\t Name \t\t#\t Lastname \t# "
+		puts "\t*=======================*=======================*=======================*"
+		_id = 1
+		@contacts.each do |elem| 
+			puts "\t| #{_id} \t\t\t| #{elem.name} \t\t| #{elem.lastname} \t\t|"
+			puts "\t*-----------------------*-----------------------*-----------------------*"
+			_id = _id+1
+		end
 
-			@contacts
+		print "\n\t Select a name for delete contact => "
+		STDOUT.flush
+		_select_id = gets.chomp.to_i - 1
+
+		system('cls')
+		if _select_id + 1 <= @contacts.length
+			@contacts.delete_at(_select_id)
+		else
+			puts "Select a Id from the table. Press ENTER"
+			gets
+			system('cls')
+			deleteContact()
+		end
+		puts "\n\tthe contact #{_select_id+1} was remove success!"
+
+		print "\n\tDo you want return to main menu? y/n => "
+		option = gets.chomp
+
+		if option == "n"
+			system('cls')
+			deleteContact()
+		else
+			system('cls')
+			mainMenu()
+		end
 	end
 
 end
